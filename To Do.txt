@@ -1,0 +1,285 @@
+# Adaptive Trading OS — To Do
+# Last updated: 2026-04-30  (Lambda sync complete — Phase 17 + Lambda now at parity)
+
+## Legend
+[ ] Not started
+[/] In progress
+[x] Done
+[!] Blocked
+[?] Needs decision
+
+==============================================================
+## Phase 1 — Repo Cleanup & Inventory
+==============================================================
+[x] Inspect existing repo
+[x] Identify active files
+[x] Identify duplicate files (none found)
+[x] Identify old/unused files (none found)
+[x] Identify hardcoded secrets (.env + schwab_token.json — no hardcoded keys in .py files)
+[x] Create docs/repo_inventory.md
+[x] Create docs/adaptive_trading_os_gap_analysis.md
+[x] Create docs/folder_architecture_plan.md
+[x] Create To Do.txt
+
+[x] Create .gitignore (missing — .env and schwab_token.json are unprotected)
+[x] Create docs/security_findings.md
+[ ] Create docs/cleanup_candidates.md
+
+==============================================================
+## Phase 2 — Architecture & Folder Structure
+==============================================================
+[x] Scaffold new folder structure (src/core, src/data_sources, src/features, etc.)
+[x] Create README.md files for each major folder
+[x] Create .env.example with placeholder keys
+[x] Create pyproject.toml
+[x] Create config loader (src/core/config/)
+[ ] Map existing docs into docs/ folder
+
+==============================================================
+## Phase 3 — Schwab Market Data Layer
+==============================================================
+[x] Create MarketDataProvider interface (src/core/contracts/)
+[x] Create SchwabProvider class wrapping existing src/data.py logic
+[x] Verify token handling works in new structure
+[x] Implement data validation / gap detection
+[x] Define local storage fallback for dev (src/storage/local/)
+
+==============================================================
+## Phase 4 — AWS Storage Layer
+==============================================================
+[ ] Define S3 raw candle schema (docs/data_schema.md)
+[ ] Define S3 normalized candle schema
+[ ] Define DynamoDB tables: signal_log, rules, outcomes, risk_state
+[ ] Define Athena query structure
+[x] Implement StorageProvider interface (src/core/contracts/)
+[x] Implement LocalStorage (CSV, for dev)
+[ ] Implement S3Storage (for AWS)
+[ ] Implement DynamoDBStateStore
+
+==============================================================
+## Phase 5 — Candle & Feature Engine
+==============================================================
+[x] Move src/indicators.py → src/features/indicators/
+[x] Extract ADX regime classifier → src/features/regimes/
+[x] Create candle builder + resampler (src/features/candles/)
+[x] Add VWAP calculation
+[x] Add session labeling (RTH / pre-market / AH)
+[x] Add ATR percentile (volatility regime)
+[x] Add support/resistance level catalog (src/features/support_resistance/)
+
+==============================================================
+## Phase 6 — Candidate Signal Generator
+==============================================================
+[x] Extract pivot_signal from signals.py → src/signals/candidate_generators/
+[x] Extract pullback_signal from signals.py → src/signals/candidate_generators/
+[x] Extract range_scalp from signals.py → src/signals/candidate_generators/
+[x] Extract volume filter → src/signals/filters/
+[x] Extract ATR gate → src/signals/filters/
+[x] Extract signal quality scoring → src/signals/scoring/
+[ ] Add breakout/retest setup (future)
+[ ] Add VWAP reclaim/reject setup (future)
+[ ] Add opening range breakout setup (future)
+[ ] Add volatility expansion setup (future)
+
+==============================================================
+## Phase 7 — Backtest Engine
+==============================================================
+[x] Move walk-forward core to src/backtesting/engine/
+[x] Add MFE tracking (max favorable excursion)
+[x] Add MAE tracking (max adverse excursion)
+[x] Add R-multiple distribution
+[x] Add time-to-target / time-to-stop tracking
+[x] Add alternate target tests (0.5R, 1R, 2R, 3R)
+[ ] Add alternate stop tests (ATR-based, SMMA21-based)
+[x] Add trailing stop simulation
+[x] Add time-based exit simulation
+
+==============================================================
+## Phase 8 — Inference Engine
+==============================================================
+[x] Build bucket analysis (group by: setup family, regime, pivot level, TF, quality tier)
+[x] Compute win rate per bucket
+[x] Compute average win / average loss per bucket
+[x] Compute expectancy per bucket
+[x] Compute profit factor per bucket
+[x] Add confidence labeling (A/B/C/insufficient-data)
+[x] Build rule recommendation output
+[ ] Store bucket results in DynamoDB / S3  — deferred to Phase 10 (local CSV for now)
+
+==============================================================
+## Phase 9 — Rule Engine
+==============================================================
+[x] Define candidate rule model (JSON schema) — Rule dataclass, rules/candidate_rules.json
+[x] Define active rule model — rules/active_rules.json (2 active: D_FR1, D_S2 blacklisted)
+[x] Implement rule_engine.evaluate_signal() — RuleEngine.evaluate() → (bool, reason)
+[x] Implement rule_engine.score_signal() — RuleEngine.score() → int 0-100
+[x] Implement rule_engine.block_signal() — covered by evaluate() block action
+[x] Add rule promotion logic (candidate → active) — RuleStore.promote(rule_id)
+[x] Add rule retirement logic — RuleStore.retire(rule_id)
+[ ] Add rule versioning — deferred post-Phase 10
+[ ] Auto-promotion after N trades + threshold — deferred to Phase 10 (needs outcome tracker)
+
+==============================================================
+## Phase 10 — Risk Management Layer
+==============================================================
+[x] Create RiskEngine interface (src/core/contracts/)
+[x] Implement daily state persistence (JSON-backed, DynamoDB-ready)
+[x] Implement max trades per day limit
+[x] Implement max daily loss limit  (enforced when Phase 12 feeds outcomes)
+[ ] Implement max weekly loss limit  (deferred — needs outcome history)
+[x] Implement max consecutive losses circuit breaker
+[ ] Implement allowed symbols list  (MES only — deferred, single symbol now)
+[x] Implement min signal score threshold  (set to 0 until data justifies)
+[x] Implement kill switch (manual + auto-trigger)
+[ ] Add persistent cooldown store (replaces in-memory dict in main.py)  — Phase 14
+
+==============================================================
+## Phase 11 — Telegram Alert OS
+==============================================================
+[x] Create AlertProvider interface (src/core/contracts/)
+[x] Implement Telegram send_signal()
+[x] Format signal cards (Telegram HTML)
+[x] Include quality tier + score in card
+[x] Include historical bucket stats in card  (near_level + regime; omitted if no CSVs)
+[x] Include risk status in card (trades remaining, P&L, kill switch)
+[x] Implement send_eod_report()  (implemented, not yet wired — Phase 12)
+[x] Implement send_error() for Lambda failures  (implemented, not yet wired)
+[ ] Add Telegram command handling (if feasible)  — deferred
+[ ] Log Telegram delivery status  — deferred to Phase 14
+
+==============================================================
+## Phase 12 — Paper Broker
+==============================================================
+[x] Create ExecutionProvider interface (src/core/contracts/)
+[x] Implement paper order model (Order, Fill data classes)
+[x] Implement fake fill engine (entry ± 1 tick slippage)
+[x] Implement stop/target simulator (resolve on each 30s scan)
+[x] Implement position tracker (one trade at a time)
+[x] Add slippage model (1 tick = $1.25)
+[x] Add fee model ($0.35/side = $0.70 round-trip)
+[x] Compute paper P/L per trade
+[x] Track daily paper risk state
+[x] Connect paper broker to risk engine
+
+==============================================================
+## Phase 13 — Dashboard
+==============================================================
+[x] Set up Streamlit app (src/dashboard/app.py)
+[x] Today's signals panel
+[x] Active rules panel  (with Retire button)
+[x] Candidate rules panel  (with Promote + Retire buttons)
+[x] Paper P/L panel  (today's outcomes + metrics)
+[x] Best / worst buckets panel  (Performance tab, dropdown by dimension)
+[x] Risk state panel  (trades taken, daily P&L, consecutive losses, kill switch)
+[ ] Rejected signals log  — deferred (no data source yet)
+[ ] Execution readiness checklist  — deferred
+
+==============================================================
+## Phase 14 — AWS Orchestration
+==============================================================
+[x] Add CloudWatch structured logging (src/aws/cloudwatch/logger.py)
+[x] Add Secrets Manager credential loader (src/aws/secrets_manager/loader.py)
+[x] Lambda code location identified: C:\Users\emcca\Desktop\AWS Infrastructure\
+[x] Lambda synced to Phase 17 parity (2026-04-30) — quality scoring, LEVEL_BLACKLIST, pullback, range scalp
+[x] lambda_sync/ folder created in this repo for future syncs
+[x] Deploy via: cd "AWS Infrastructure/terraform/personal/trading-bot" && terraform apply
+[!] Implement persistent signal cooldown in DynamoDB — still in-memory; deferred
+[!] S3Storage / DynamoDBStateStore implementations — BLOCKED: needs AWS infra to validate
+[ ] Document IAM least-privilege requirements
+[ ] Define dev / paper / live environment separation
+
+==============================================================
+## Phase 15 — Future Tradovate Adapter (placeholder only)
+==============================================================
+[x] Create Tradovate provider interface (disabled by default)
+[x] Add Tradovate auth placeholder (all methods raise RuntimeError — disabled until $1,000 account)
+[!] Add account selection placeholder — BLOCKED: deferred until $1,000 account + 60 paper trades
+[!] Add contract lookup placeholder — BLOCKED: same
+[x] Add order placement placeholder (place_order raises RuntimeError)
+[!] Add bracket/OCO placeholder — BLOCKED: deferred until real Tradovate API access
+[x] Add position monitor placeholder (has_open_position, get_position raise RuntimeError)
+[x] Add emergency flatten placeholder (flatten_all raises RuntimeError)
+[x] Confirm LIVE_EXECUTION_ENABLED=false is the default — is_enabled() hardcoded False in broker
+
+==============================================================
+## Phase 16 — Testing
+==============================================================
+[x] Write unit tests for indicators.py  (tests/features/test_indicators.py — 35 tests)
+[x] Write unit tests for signal generators  (tests/signals/test_signal_generators.py — 14 tests, test_volume_filters.py — 11 tests, test_quality_score.py — 8 tests)
+[x] Write unit tests for risk engine  (tests/risk/test_local_risk_engine.py — 14 tests)
+[x] Write unit tests for paper broker  (tests/execution/test_paper_broker.py — 10 tests)
+[!] Write integration tests for signal flow — DEFERRED: requires mocking many layers; after signal tests stable
+[!] Create backtest fixture data (tests/fixtures/) — DEFERRED: infrastructure work; needed before correctness tests
+[!] Write backtest correctness tests (verify no lookahead) — DEFERRED: depends on fixture data
+[!] Write regression tests for known signals — DEFERRED: depends on fixture data
+
+==============================================================
+## Phase 17 — Cleanup
+==============================================================
+[x] Search for unused imports across all .py files  (AST scan; candidates in docs/cleanup_candidates.md)
+[x] Search for dead code / unreachable branches  (none found; shims deleted)
+[x] Move backtest CSVs → data/backtests/
+[x] Move LOGIC.md → docs/logic_reference.md
+[x] Move USER_MANUAL.md → docs/user_manual.md
+[x] Move auth_schwab.py → scripts/maintenance/auth_schwab.py
+[x] Delete src/signals.py (630 lines, legacy shadowed by package)
+[x] Delete src/_signals_legacy.py (630 lines, read-only backup)
+[x] Delete src/indicators.py (4-line shim; updated main.py caller first)
+[x] Create docs/cleanup_candidates.md (D-10 closed)
+[!] essay_aws_architecture.md, essay_for_traders.md — already in Essays/ subfolder; no action needed
+[?] Archive any other files that don't fit new structure — review after paper trading period
+
+==============================================================
+## Review Findings — After Phase 7 (2026-04-29)
+==============================================================
+[x] D-01: MarketDataProvider missing get_latest_quote() — FIXED (added abstract method)
+[x] D-02: ExecutionProvider missing cancel_order(), get_open_orders() — FIXED
+[x] D-03: TradovateBroker didn't implement new abstract methods — FIXED (both raise RuntimeError)
+[x] D-04: docs/refactor_log.md missing — FIXED (created)
+[x] D-05: docs/repo_inventory.md stale (Phase 1 baseline) — PARTIALLY FIXED (header + src tree)
+[x] D-06: docs/adaptive_trading_os_gap_analysis.md stale — PARTIALLY FIXED (7 sections updated)
+[x] D-07: src/ingestion/README.md missing — FIXED (created)
+[x] D-08: docs/README.md missing — FIXED (created)
+[ ] D-09: CLAUDE.md file structure diagram stale — deferred (low priority)
+[ ] D-10: docs/cleanup_candidates.md never created — deferred to Phase 17
+[ ] ATR-based stop tests (Phase 7 item) — still open
+
+Full review report: docs/phase_1_to_7_review.md
+
+==============================================================
+## HIGH PRIORITY — After 30 Paper Trades
+==============================================================
+[ ] Telegram group setup — other traders not receiving signals (bot sends to personal chat_id only)
+    1. Create Telegram group, add all traders + bot
+    2. Get group chat_id from api.telegram.org/bot<token>/getUpdates (negative number)
+    3. Update Secrets Manager: trading-bot/telegram → replace chat_id with group ID
+    4. No code change needed — next Lambda invocation picks it up automatically
+
+==============================================================
+## GitHub
+==============================================================
+[ ] Run ! gh auth login in Claude Code prompt (GitHub.com → HTTPS → browser)
+[x] Repo name: adaptive-trading-os
+[ ] Push Trading Bot to GitHub as public repo (LinkedIn featured project)
+    - .gitignore already updated: CLAUDE.md, Adaptive Trader/, backtest_results/, charts/*.png excluded
+    - git init + initial commit + gh repo create + push
+
+==============================================================
+## Current Blockers
+==============================================================
+[!] Tradovate API requires funded account ($1,000+) — keep as placeholder
+[x] Lambda infra repo located and synced (AWS Infrastructure/ on Desktop)
+[?] Confirm dashboard framework: Streamlit vs. something else
+[x] .gitignore created — .env and schwab_token.json are protected
+
+==============================================================
+## Immediate Next Steps (pre-Phase 8 checklist — updated 2026-04-29)
+==============================================================
+[x] 1. Run backtest.py with Phase 7 engine — generate fresh trade records with all new fields
+[x] 2. Review new output sections: R-multiple dist, alt-exit scenarios, quality-tier breakdown
+        Key findings: exit-at-pivot validated ($920 net vs $846 at 2R), D_PP best level,
+        W_FR1 net loser, MAE median 1.26R (stops under pressure), short-TF results noise (<17 trades)
+[x] 3. Add pytest to requirements.txt + write walk_forward() smoke test (10 pass, 3 skip)
+        tests/backtesting/test_walk_forward.py — TradeResolver unit tests fully cover Phase 7 logic
+[x] 4. Update CLAUDE.md file structure diagram to reflect Phase 5-7 src/ layers
+[ ] 5. Phase 8 — Inference Engine (bucket analysis, expectancy, confidence labeling)

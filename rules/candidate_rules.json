@@ -1,0 +1,30 @@
+[
+  {
+    "id": "c001",
+    "name": "Watch W_FR1",
+    "status": "candidate",
+    "action": "block",
+    "condition": "near_level",
+    "operator": "eq",
+    "value": "W_FR1",
+    "score_delta": 0.0,
+    "source": "inference",
+    "min_trades": 0,
+    "note": "1/8 wins (12%), PF 0.38. Net loser but insufficient data to blacklist. Promote after 15+ total trades if WR still < 25%.",
+    "created": "2026-04-30"
+  },
+  {
+    "id": "c002",
+    "name": "Watch 1m signals",
+    "status": "candidate",
+    "action": "block",
+    "condition": "entry_tf",
+    "operator": "eq",
+    "value": "1m",
+    "score_delta": 0.0,
+    "source": "inference",
+    "min_trades": 0,
+    "note": "1/17 wins (6%), PF 0.33. Likely noise from 3-day sample window. Monitor before promoting.",
+    "created": "2026-04-30"
+  }
+]

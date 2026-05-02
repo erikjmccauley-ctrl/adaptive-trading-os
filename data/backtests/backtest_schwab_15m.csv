@@ -1,0 +1,16 @@
+entry_ts,entry,stop,target1,target1_name,direction,entry_tf,rr,near_level,outcome,exit_price,exit_ts,pnl_pts,pnl_dollars,risk_pts,mfe_pts,mae_pts,mfe_r,mae_r,r_multiple,bars_held,reached_0_5r,reached_1r,reached_2r,reached_3r,signal_type,quality,regime,adx
+2026-04-16 09:15:00,7067.0,7061.75,7083.06,D_FR2,LONG,15m,3.06,D_FR1,LOSS,7061.75,2026-04-16 10:30:00,-5.25,-26.25,5.25,4.0,5.5,0.76,1.05,-1.0,5,True,False,False,False,pivot,C,neutral,0.0
+2026-04-16 11:00:00,7066.75,7058.75,7083.06,D_FR2,LONG,15m,2.04,D_FR1,LOSS,7058.75,2026-04-16 13:45:00,-8.0,-40.0,8.0,7.0,20.5,0.88,2.56,-1.0,11,True,False,False,False,pivot,C,neutral,0.0
+2026-04-17 17:00:00,7174.25,7159.25,7303.5,W_R3,LONG,15m,8.62,M_R2,LOSS,7159.25,2026-04-17 17:15:00,-15.0,-75.0,15.0,1.5,22.5,0.1,1.5,-1.0,1,False,False,False,False,pivot,C,trending,61.2
+2026-04-20 18:00:00,7142.25,7130.0,7169.25,M_R2,LONG,15m,2.2,SMMA21,TIMEOUT,7157.75,2026-04-20 23:00:00,15.5,77.5,12.25,18.5,5.75,1.51,0.47,1.27,16,True,True,False,False,pullback,B,trending,53.3
+2026-04-27 04:00:00,7201.0,7208.75,7177.25,D_PP,SHORT,15m,3.06,D_FR1,TIMEOUT,7182.0,2026-04-27 08:00:00,19.0,95.0,7.75,19.5,4.25,2.52,0.55,2.45,16,True,True,True,False,range_scalp,B,ranging,17.5
+2026-04-27 17:15:00,7201.0,7202.5,7177.25,D_PP,SHORT,15m,15.83,D_FR1,LOSS,7202.5,2026-04-27 17:30:00,-1.5,-7.5,1.5,0.5,6.0,0.33,4.0,-1.0,1,False,False,False,False,range_scalp,C,ranging,15.3
+2026-04-27 19:45:00,7207.0,7200.25,7217.57,D_FR2,LONG,15m,1.57,W_FR1,WIN,7217.57,2026-04-27 22:00:00,10.57,52.85,6.75,11.0,5.0,1.63,0.74,1.57,5,True,True,False,False,pivot,C,ranging,15.5
+2026-04-27 22:45:00,7216.25,7221.25,7204.88,W_FR1,SHORT,15m,2.27,D_FR2,LOSS,7221.25,2026-04-28 00:00:00,-5.0,-25.0,5.0,1.25,6.75,0.25,1.35,-1.0,5,False,False,False,False,range_scalp,B,ranging,15.3
+2026-04-28 00:45:00,7213.75,7212.0,7220.75,D_R1,LONG,15m,4.0,D_FR1,LOSS,7212.0,2026-04-28 01:00:00,-1.75,-8.75,1.75,1.0,2.25,0.57,1.29,-1.0,1,True,False,False,False,range_scalp,C,ranging,16.1
+2026-04-28 02:30:00,7207.25,7206.25,7211.38,D_FR1,LONG,15m,4.13,W_FR1,LOSS,7206.25,2026-04-28 02:45:00,-1.0,-5.0,1.0,1.0,2.5,1.0,2.5,-1.0,1,True,True,False,False,range_scalp,C,ranging,16.1
+2026-04-28 04:15:00,7210.5,7212.25,7204.88,W_FR1,SHORT,15m,3.21,D_FR1,LOSS,7212.25,2026-04-28 04:30:00,-1.75,-8.75,1.75,0.0,2.0,0.0,1.14,-1.0,1,False,False,False,False,range_scalp,C,ranging,16.8
+2026-04-28 05:45:00,7198.25,7196.0,7204.88,W_FR1,LONG,15m,2.95,D_PP,LOSS,7196.0,2026-04-28 06:00:00,-2.25,-11.25,2.25,2.5,2.25,1.11,1.0,-1.0,1,True,True,False,False,range_scalp,C,ranging,15.9
+2026-04-28 07:30:00,7196.0,7190.5,7204.88,W_FR1,LONG,15m,1.61,D_PP,LOSS,7190.5,2026-04-28 08:00:00,-5.5,-27.5,5.5,1.75,7.5,0.32,1.36,-1.0,2,False,False,False,False,range_scalp,C,ranging,15.5
+2026-04-28 08:15:00,7201.75,7202.0,7196.0,D_PP,SHORT,15m,23.0,W_FR1,LOSS,7202.0,2026-04-28 08:30:00,-0.25,-1.25,0.25,3.0,0.25,12.0,1.0,-1.0,1,True,True,True,True,range_scalp,C,ranging,14.4
+2026-04-28 09:15:00,7196.0,7202.25,7180.62,D_FS1,SHORT,15m,2.46,D_PP,WIN,7180.62,2026-04-28 11:00:00,15.38,76.9,6.25,17.5,0.5,2.8,0.08,2.46,7,True,True,True,False,range_scalp,B,ranging,14.5

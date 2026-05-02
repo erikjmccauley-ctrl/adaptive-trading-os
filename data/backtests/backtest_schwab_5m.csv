@@ -1,0 +1,9 @@
+entry_ts,entry,stop,target1,target1_name,direction,entry_tf,rr,near_level,outcome,exit_price,exit_ts,pnl_pts,pnl_dollars,risk_pts,mfe_pts,mae_pts,mfe_r,mae_r,r_multiple,bars_held,reached_0_5r,reached_1r,reached_2r,reached_3r,signal_type,quality,regime,adx
+2026-04-23 05:20:00,7132.75,7137.5,7122.12,D_FS2,SHORT,5m,2.24,D_S1,LOSS,7137.5,2026-04-23 05:50:00,-4.75,-23.75,4.75,2.0,4.75,0.42,1.0,-1.0,6,False,False,False,False,pivot,B,trending,35.5
+2026-04-23 15:40:00,7173.5,7171.5,7184.17,D_R1,LONG,5m,5.34,D_FR1,LOSS,7171.5,2026-04-23 15:45:00,-2.0,-10.0,2.0,0.25,7.75,0.12,3.88,-1.0,1,False,False,False,False,pivot,C,trending,29.7
+2026-04-27 03:05:00,7202.25,7201.75,7204.88,W_FR1,LONG,5m,5.26,D_FR1,LOSS,7201.75,2026-04-27 03:10:00,-0.5,-2.5,0.5,1.0,0.5,2.0,1.0,-1.0,1,True,True,True,False,pivot,C,trending,29.1
+2026-04-27 18:20:00,7206.0,7201.0,7217.57,D_FR2,LONG,5m,2.31,W_FR1,TIMEOUT,7202.75,2026-04-27 20:20:00,-3.25,-16.25,5.0,5.5,4.5,1.1,0.9,-0.65,24,True,True,False,False,pivot,C,neutral,18.0
+2026-04-27 20:50:00,7205.75,7201.75,7217.57,D_FR2,LONG,5m,2.95,W_FR1,WIN,7217.57,2026-04-27 22:05:00,11.82,59.1,4.0,12.25,1.0,3.06,0.25,2.95,3,True,True,True,True,range_scalp,C,ranging,17.3
+2026-04-28 01:50:00,7212.5,7210.5,7220.75,D_R1,LONG,5m,4.12,D_FR1,LOSS,7210.5,2026-04-28 01:55:00,-2.0,-10.0,2.0,0.25,4.5,0.12,2.25,-1.0,1,False,False,False,False,pivot,C,trending,25.6
+2026-04-28 16:55:00,7155.5,7160.0,7140.25,D_S3,SHORT,5m,3.39,D_S2,LOSS,7160.0,2026-04-28 17:35:00,-4.5,-22.5,4.5,7.5,6.5,1.67,1.44,-1.0,8,True,True,False,False,pivot,C,trending,27.3
+2026-04-29 17:20:00,7150.5,7155.25,7138.17,D_S1,SHORT,5m,2.6,D_FS1,LOSS,7155.25,2026-04-29 17:30:00,-4.75,-23.75,4.75,2.0,5.25,0.42,1.11,-1.0,2,False,False,False,False,pivot,C,trending,31.3

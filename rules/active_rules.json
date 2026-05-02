@@ -1,0 +1,30 @@
+[
+  {
+    "id": "r001",
+    "name": "Block D_FR1",
+    "status": "active",
+    "action": "block",
+    "condition": "near_level",
+    "operator": "eq",
+    "value": "D_FR1",
+    "score_delta": 0.0,
+    "source": "inference",
+    "min_trades": 0,
+    "note": "0/9 wins across all TFs. Inference finding 2026-04-30.",
+    "created": "2026-04-30"
+  },
+  {
+    "id": "r002",
+    "name": "Block D_S2",
+    "status": "active",
+    "action": "block",
+    "condition": "near_level",
+    "operator": "eq",
+    "value": "D_S2",
+    "score_delta": 0.0,
+    "source": "inference",
+    "min_trades": 0,
+    "note": "0/5 wins across all TFs. Inference finding 2026-04-30.",
+    "created": "2026-04-30"
+  }
+]

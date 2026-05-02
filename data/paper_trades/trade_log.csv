@@ -1,0 +1,9 @@
+date,time_et,direction,entry_tf,near_level,quality,entry,stop,target1,target1_name,rr,risk_usd,reward_usd,outcome,resolved_et,pnl_usd,notes
+2026-05-01,09:37,SHORT,15m,W_R2,C,7276.50,7277.75,7256.90,D_FR1,15.68,6.25,98.00,LOSS,09:41,−6.25,stopped 4 min after signal
+2026-05-01,09:53,SHORT,15m,W_R2,C,7275.00,7279.25,7256.90,D_FR1,4.26,21.25,90.50,LOSS,09:54,−21.25,stopped 1 min after signal
+2026-05-01,09:59,LONG,1m,D_R1,B,7289.75,7269.75,7330.75,D_R2,2.05,100.00,205.00,LOSS,12:33,−100.00,MES broke through D_R1 at midday
+2026-05-01,10:32,LONG,5m,D_R1,C,7290.00,7269.75,7330.75,D_R2,2.01,101.25,203.75,LOSS,12:33,−101.25,same D_R1 breakdown
+2026-05-01,11:38,LONG,5m,D_R1,B,7290.50,7271.50,7330.75,D_R2,2.12,95.00,201.25,LOSS,12:23,−95.00,
+2026-05-01,11:39,LONG,1m,D_R1,B,7289.50,7282.75,7330.75,D_R2,6.11,33.75,206.25,LOSS,11:50,−33.75,tightest stop — stopped earliest
+2026-05-01,13:49,LONG,1m,W_R2,C,7279.50,7279.00,7285.10,D_FR2,11.20,2.50,28.00,LOSS,13:51,−2.50,2-tick stop — noise
+2026-05-01,14:02,SHORT,1m,W_R2,A,7278.75,7284.00,7256.90,D_FR1,4.16,26.25,109.25,WIN,15:59,+109.25,A-grade caught afternoon selloff
