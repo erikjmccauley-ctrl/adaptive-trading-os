@@ -271,7 +271,7 @@ Prints "Market closed" outside those hours and checks every 5 minutes.
 
 **🟢 Live (Schwab)** — real-time data. Schwab API connected. All signal prices are live.
 
-If the token expires (~7 days), the signal line will stop or show an error. Re-run `python auth_schwab.py` to re-authenticate.
+The Schwab token is self-maintaining. The Lambda writes a refreshed token back to S3 after every data fetch, so the connection stays alive indefinitely without manual intervention. If you ever see 🟡 delayed, run `python scripts/maintenance/auth_schwab.py` from the trading bot directory (not system32) and re-upload to S3.
 
 ---
 
@@ -280,7 +280,7 @@ If the token expires (~7 days), the signal line will stop or show an error. Re-r
 | Problem | Fix |
 |---|---|
 | `ModuleNotFoundError` | Run `pip install -r requirements.txt` |
-| Schwab error / no data | Token may be expired — run `python auth_schwab.py` |
+| Schwab error / no data | Token stale — run `python scripts/maintenance/auth_schwab.py` from the trading bot directory, then re-upload to S3 |
 | No signals all day | Normal in choppy or low-ADX markets — the bot is filtering noise |
 | Signal fired but looked wrong | Drop a screenshot in the `charts/` folder and ask Claude to analyze |
 | "Market closed" during trading hours | Check PC clock timezone — should be Eastern or auto |

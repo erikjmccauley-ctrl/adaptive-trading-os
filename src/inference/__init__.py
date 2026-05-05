@@ -110,7 +110,7 @@ def run_inference(
         engine = BucketEngine.from_csvs(*csv_paths)
         source_label = f'{engine.overall().n} trades  |  {len(csv_paths)} files loaded'
     else:
-        paths = sorted(glob.glob('backtest_*.csv'))
+        paths = sorted(glob.glob('data/backtests/backtest_*.csv'))
         engine = BucketEngine.from_csvs(*paths)
         source_label = f'{engine.overall().n} trades  |  {len(paths)} files loaded'
 

@@ -258,11 +258,11 @@ Full review report: docs/phase_1_to_7_review.md
 ==============================================================
 ## GitHub
 ==============================================================
-[ ] Run ! gh auth login in Claude Code prompt (GitHub.com → HTTPS → browser)
+[x] Run ! gh auth login in Claude Code prompt (GitHub.com → HTTPS → browser)
 [x] Repo name: adaptive-trading-os
-[ ] Push Trading Bot to GitHub as public repo (LinkedIn featured project)
-    - .gitignore already updated: CLAUDE.md, Adaptive Trader/, backtest_results/, charts/*.png excluded
-    - git init + initial commit + gh repo create + push
+[x] Push Trading Bot to GitHub as public repo (LinkedIn featured project)
+    - https://github.com/erikjmccauley-ctrl/adaptive-trading-os
+    - 203 files, 11,586 lines — initial commit 2026-05-01
 
 ==============================================================
 ## Current Blockers
@@ -282,4 +282,4 @@ Full review report: docs/phase_1_to_7_review.md
 [x] 3. Add pytest to requirements.txt + write walk_forward() smoke test (10 pass, 3 skip)
         tests/backtesting/test_walk_forward.py — TradeResolver unit tests fully cover Phase 7 logic
 [x] 4. Update CLAUDE.md file structure diagram to reflect Phase 5-7 src/ layers
-[ ] 5. Phase 8 — Inference Engine (bucket analysis, expectancy, confidence labeling)
+[x] 5. Phase 8 — Inference Engine (bucket analysis, expectancy, confidence labeling)

@@ -57,8 +57,8 @@ class BucketEngine:
 
     @classmethod
     def from_default_csvs(cls) -> 'BucketEngine':
-        """Load all backtest_*.csv files found in the current directory."""
-        paths = sorted(glob.glob('backtest_*.csv'))
+        """Load all backtest_*.csv files from data/backtests/."""
+        paths = sorted(glob.glob('data/backtests/backtest_*.csv'))
         return cls.from_csvs(*paths)
 
     def _make_result(self, key: dict, subset: list[dict]) -> BucketResult:
